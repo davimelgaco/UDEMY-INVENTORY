@@ -1,0 +1,27 @@
+{
+  "name": "udemy-stoque",
+  "version": "1.0.0",
+  "description": "Aplicativo de controle de estoque",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davimelgaco/UDEMY-STOQUE.git"
+  },
+  "author": "Davi Melgaço",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davimelgaco/UDEMY-STOQUE/issues"
+  },
+  "homepage": "https://github.com/davimelgaco/UDEMY-STOQUE#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "espress": "^0.0.0",
+    "jest": "^29.7.0",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.13.0",
+    "sequelize": "^6.37.6"
+  }
+}
