@@ -1,9 +1,9 @@
 const database = require('../database');
 const Organization = require('./organization');
 
-class User {
+class Product {
     constructor() {
-        this.model = database.db.define("users", {
+        this.model = database.db.define("products", {
             id: {
                 type: database.db.Sequelize.INTEGER,
                 primaryKey: true,
@@ -13,18 +13,10 @@ class User {
                 type: database.db.Sequelize.STRING,
                 allowNull: false
             },
-            email: {
+            description: {
                 type: database.db.Sequelize.STRING,
                 allowNull: false,
                 unique: true
-            },
-            password: {
-                type: database.db.Sequelize.STRING,
-                allowNull: false
-            },
-            role: {
-                type: database.db.Sequelize.STRING,
-                allowNull: false
             },
             organizationId: {
                 type: database.db.Sequelize.INTEGER,
@@ -45,4 +37,4 @@ class User {
     }
 }
 
-module.exports = new User().model;
+module.exports = new Product().model;
