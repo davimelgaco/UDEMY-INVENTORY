@@ -28,7 +28,6 @@ class User {
             },
             organizationId: {
                 type: database.db.Sequelize.INTEGER,
-                allowNull: false,
                 references: {
                     model: Organization,
                     key: "id"

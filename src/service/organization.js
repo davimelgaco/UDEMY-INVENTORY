@@ -1,4 +1,6 @@
+const generatePassword = require('../fns/generate-password');
 const modelOrganization = require('../model/organization');
+const ServiceUser = require('./user');
 
 class ServiceOrganization {
 
@@ -22,8 +24,10 @@ class ServiceOrganization {
         )
 
         //criar um usuário quando criar uma organização
+        const password = generatePassword()
+        const user = await ServiceUser.Create(organization.id, name, email, password, 'admin', transaction )
 
-        return organization
+        return {organization, user: { ...user.dataValues, password }}
     }
 
     async Update(id, name, address, phone, email, transaction) {
