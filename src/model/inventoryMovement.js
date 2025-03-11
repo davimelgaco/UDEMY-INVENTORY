@@ -37,7 +37,6 @@ class InventoryMovement {
             },
             inventoryId: {
                 type: database.db.Sequelize.INTEGER,
-                allowNull: false,
                 references: {
                     model: Inventory,
                     key: "id"

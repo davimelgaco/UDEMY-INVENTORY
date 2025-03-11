@@ -1,9 +1,11 @@
+const serviceProducts = require("../service/products")
+
 class ApiProduct {
     async FindById(req, res) {
         try {
             const { id } = req.params
             const organizationId = 1
-            const product = { id }  // await service.findById(productId)
+            const product =  await serviceProducts.FindById(organizationId, id)
 
             res.status(200).send({ product })
         } catch (e) {
@@ -13,7 +15,7 @@ class ApiProduct {
     async FindAll(req, res) {
         try {
             const organizationId = 1
-            const products = [{ organizationId }]  // await service.findById(productId)
+            const products = await serviceProducts.FindAll(organizationId)
 
             res.status(200).send({ products })
         } catch (e) {
@@ -24,7 +26,7 @@ class ApiProduct {
         try {
             const organizationId = 1
             const { name, description } = req.body
-            const product = {}  // await service.findById(productId)
+            const product = await serviceProducts.Create(organizationId, name, description)
 
             res.status(200).send({ product })
         } catch (e) {
@@ -35,8 +37,9 @@ class ApiProduct {
     async Update(req, res) {
         try {
             const organizationId = 1
+            const { id } = req.params
             const { name, description } = req.body
-            const product = {}  // await service.findById(productId)
+            const product = await serviceProducts.Update(organizationId, id, name, description)
 
             res.status(200).send({ product })
         } catch (e) {
@@ -47,7 +50,7 @@ class ApiProduct {
         try {
             const organizationId = 1
             const { id } = req.params
-            const product = {}  // await service.findById(productId)
+            const product = await serviceProducts.Delete(organizationId, id)
 
             res.status(200).send({ product })
         } catch (e) {
