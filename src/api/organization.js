@@ -21,7 +21,7 @@ class ApiOrganization {
             res.status(500).send({ msg: e.message })
         }
     }
-
+ 
     async Update(req, res) {
         try {
             const { id } = req.params

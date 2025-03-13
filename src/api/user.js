@@ -1,11 +1,12 @@
 const serviceUser = require('../service/user')
 
+
+ 
 class ApiUser {
     async FindById(req, res) {
         try {
-            const organizationId = 1
+            const {id, organizationId} = req.session
 
-            const { id } = req.params
             const user = await serviceUser.FindById(organizationId, id)
 
             res.status(200).send({ user })
@@ -15,7 +16,7 @@ class ApiUser {
     }
     async FindAll(req, res) {
         try {
-            const organizationId = 1
+            const organizationId = req.session.organizationId
             const users = await serviceUser.FindAll(organizationId)
 
             res.status(200).send({ users })
@@ -25,7 +26,7 @@ class ApiUser {
     }
     async Create(req, res) {
         try {
-            const organizationId = 1
+            const organizationId = req.session.organizationId
             const { name, email, password, role } = req.body
             const user = await serviceUser.Create(organizationId, name, email, password, role)
 
@@ -37,8 +38,8 @@ class ApiUser {
 
     async Update(req, res) {
         try {
-            const organizationId = 1
-            const { id } = req.params
+            const organizationId = req.session.organizationId
+            const id = req.params.id || req.session.id
             const { name, email, password, role } = req.body
             const user = await serviceUser.Update(organizationId, id, name, email, password, role)
 
@@ -49,11 +50,21 @@ class ApiUser {
     }
     async Delete(req, res) {
         try {
-            const organizationId = 1
-            const { id } = req.params
+            const organizationId = req.session.organizationId
+            const id = req.params.id || req.session.id
             const user = await serviceUser.Delete(organizationId, id)
 
             res.status(200).send({ user })
+        } catch (e) {
+            res.status(500).send({ msg: e.message })
+        }
+    }
+    async Login(req, res) {
+        try {
+            const { email, password } =req.body
+            const token = await serviceUser.Login(email, password)
+
+            res.status(200).send({ token })
         } catch (e) {
             res.status(500).send({ msg: e.message })
         }

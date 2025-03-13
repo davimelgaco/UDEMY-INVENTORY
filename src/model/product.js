@@ -15,7 +15,6 @@ class Product {
             },
             description: {
                 type: database.db.Sequelize.STRING,
-                allowNull: false,
                 unique: true
             },
             organizationId: {

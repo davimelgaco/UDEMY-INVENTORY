@@ -4,7 +4,7 @@ const serviceInventory = require("../service/inventory")
 class ApiInventory {
     async FindById(req, res) {
         try {
-            const organizationId = 1
+            const organizationId = req.session.organizationId
             const { id } = req.params
             const inventory = await serviceInventory.FindById(organizationId, id)
 
@@ -15,7 +15,7 @@ class ApiInventory {
     }
     async FindAll(req, res) {
         try {
-            const organizationId = 1
+            const organizationId = req.session.organizationId
             const inventories = await serviceInventory.FindAll(organizationId)
 
             res.status(200).send({ inventories })
@@ -25,7 +25,7 @@ class ApiInventory {
     }
     async Create(req, res) {
         try {
-            const organizationId = 1
+            const organizationId = req.session.organizationId
             const { name } = req.body
             const inventory = await serviceInventory.Create(organizationId, name)
 
@@ -37,7 +37,7 @@ class ApiInventory {
 
     async Update(req, res) {
         try {
-            const organizationId = 1
+            const organizationId = req.session.organizationId
             const { id } = req.params
             const { name } = req.body
             const inventory = await serviceInventory.Update(organizationId, id, name)
@@ -49,7 +49,7 @@ class ApiInventory {
     }
     async Delete(req, res) {
         try {
-            const organizationId = 1
+            const organizationId = req.session.organizationId
             const { id } = req.params
             const inventory = await serviceInventory.Delete(organizationId, id)
 
