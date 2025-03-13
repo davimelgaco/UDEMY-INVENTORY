@@ -2,10 +2,11 @@ const e = require('express');
 const modelUser = require('../model/user');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+require('dotenv').config()
 
 const roles = ['admin', 'employee']
 const salts = 12
-const secretKey = "MeuSegredoForte"
+const secretKey = process.env.JWT_SECRET
  
 class ServiceUser {
     async FindAll(organizationId, transaction) {
